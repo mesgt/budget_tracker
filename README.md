@@ -1,40 +1,49 @@
-# budget_tracker
-# Unit 18 PWA Homework: Online/Offline Budget Trackers
+# Budget Tracker
 
-Add functionality to our existing Budget Tracker application to allow for offline access and functionality.
+## Description 
+A simple online/offline application that can be used to track deposits and payments whether the user is connected to the internet or not with the help of service worker. When offline, entries are stored in IndexedDB and then uploaded to the database (MongoDB Atlas) when reconnected. Additionally, all data can be found in Cache Storage. 
 
-The user will be able to add expenses and deposits to their budget with or without a connection. When entering transactions offline, they should populate the total when brought back online.
+## Links 
+Published site: https://track-your-budget-2000.herokuapp.com/ 
 
-Offline Functionality:
+## Table of Contents
 
-  * Enter deposits offline
-
-  * Enter expenses offline
-
-When brought back online:
-
-  * Offline entries should be added to tracker.
-
-
-## Acceptance Criteria
-GIVEN a user is on Budget App without an internet connection
-WHEN the user inputs a withdrawal or deposit
-THEN that will be shown on the page, and added to their transaction history when their connection is back online.
+* [Description](#Description) 
+* [Links](#Links)
+* [Installation](#Installation)
+* [Usage](#Usage)
+* [Credits](#Credits)
+* [License](#License)
+* [Badges](#Badges)
 
 
+## Installation
+Express
+Mongoose
+Compression
+Lite-server
+Bootstrap
+## Usage
 
-## Submission on BCS
+![screenshot](./public/assets/images/screenshot.PNG)
+<br>
+<br>
+![video](./public/assets/images/use.gif)
 
-* You are required to submit the following:
+## Credits
+N/A
 
-  * the URL to the deployed application
+## License
+The Unlicense
 
-  * the URL to the Github repository
+## Badges
+N/A
 
-- - -
+## Contributing
 
-## Hint
+I would like to welcome you to work with me on improving this project. Feel free to contact me on gitHub or submit a pull request.
 
-* In order to cache dynamic content, i.e. users' inputs for withdrawals or deposits, incorporate `indexedDB` from the previous module.
+Please note that this project is released with a Contributor Code of Conduct. 
+By participating in this project you agree to abide by its terms. 
 
-* Use [Google](https://www.google.com) or another search engine to research this topic.
+If you are interested in collaborating with me on this project, please visit (https://www.contributor-covenant.org/version/2/0/code_of_conduct/) to review the latest version of Contributor Covenant. In Node.js, please run the following command "npm install -g covgen" and "covgen '<your_email_address>'". If you have npm 5.x installed you can run npx covgen <your_email_address> instead of installing globally.
