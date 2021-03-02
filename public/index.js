@@ -17,8 +17,9 @@ fetch("/api/transaction")
 function populateTotal() {
   // reduce transaction amounts to a single total value
   let total = transactions.reduce((total, t) => {
-    return total + parseInt(t.value);
-  }, 0);
+    return total + parseFloat(t.value);
+  }, 0)
+  .toFixed(2);
 
   let totalEl = document.querySelector("#total");
   totalEl.textContent = total;
@@ -62,7 +63,7 @@ function populateChart() {
     myChart.destroy();
   }
 
-  let ctx = document.getElementById("myChart").getContext("2d");
+  let ctx = document.getElementById("my-Chart").getContext("2d");
 
   myChart = new Chart(ctx, {
     type: 'line',
@@ -113,41 +114,41 @@ function sendTransaction(isAdding) {
   populateTotal();
   
   // also send to server
-  // fetch("/api/transaction", {
-  //   method: "POST",
-  //   body: JSON.stringify(transaction),
-  //   headers: {
-  //     Accept: "application/json, text/plain, */*",
-  //     "Content-Type": "application/json"
-  //   }
-  // })
-  // .then(response => {    
-  //   return response.json();
-  // })
-  // .then(data => {
-  //   if (data.errors) {
-  //     errorEl.textContent = "Missing Information";
-  //   }
-  //   else {
-  //     // clear form
-  //     nameEl.value = "";
-  //     amountEl.value = "";
-  //   }
-  // })
-  // .catch(err => {
-  //   // fetch failed, so save in indexed db
-  //   // saveRecord(transaction);
+  fetch("/api/transaction", {
+    method: "POST",
+    body: JSON.stringify(transaction),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    }
+  })
+  .then(response => response.json()
+  ).then(data => {
+    if (data.errors) {
+      errorEl.textContent = "Missing Information";
+    }
+    else {
+      // clear form
+      nameEl.value = "";
+      amountEl.value = "";
+    }
+  })
+  .catch(err => {
+    // fetch failed, so save in indexed db
+    saveRecord(transaction);
 
-  //   // clear form
-  //   nameEl.value = "";
-  //   amountEl.value = "";
-  // });
+    // clear form
+    nameEl.value = "";
+    amountEl.value = "";
+  });
 }
 
-document.querySelector("#add-btn").onclick = function() {
+document.querySelector("#add-btn").addEventListener("click", function(event) {
+  event.preventDefault();
   sendTransaction(true);
-};
+});
 
-document.querySelector("#sub-btn").onclick = function() {
+document.querySelector("#sub-btn").addEventListener("click", function(event) {
+  event.preventDefault();
   sendTransaction(false);
-};
+});
